@@ -27,114 +27,7 @@ export const excelFileTypes = [
   'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
 ];
 
-export const fullMimeTypesList = [
-  'text/x-c',
-  'text/x-c++',
-  'application/csv',
-  'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
-  'text/html',
-  'text/x-java',
-  'application/json',
-  'text/markdown',
-  'application/pdf',
-  'text/x-php',
-  'application/vnd.openxmlformats-officedocument.presentationml.presentation',
-  'text/x-python',
-  'text/x-script.python',
-  'text/x-ruby',
-  'text/x-tex',
-  'text/plain',
-  'text/css',
-  'text/vtt',
-  'image/jpeg',
-  'text/javascript',
-  'image/gif',
-  'image/png',
-  'application/x-tar',
-  'application/typescript',
-  'application/xml',
-  'application/zip',
-  'image/svg',
-  'image/svg+xml',
-  ...excelFileTypes,
-];
-
-export const codeInterpreterMimeTypesList = [
-  'text/x-c',
-  'text/x-c++',
-  'application/csv',
-  'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
-  'text/html',
-  'text/x-java',
-  'application/json',
-  'text/markdown',
-  'application/pdf',
-  'text/x-php',
-  'application/vnd.openxmlformats-officedocument.presentationml.presentation',
-  'text/x-python',
-  'text/x-script.python',
-  'text/x-ruby',
-  'text/x-tex',
-  'text/plain',
-  'text/css',
-  'image/jpeg',
-  'text/javascript',
-  'image/gif',
-  'image/png',
-  'application/x-tar',
-  'application/typescript',
-  'application/xml',
-  'application/zip',
-  ...excelFileTypes,
-];
-
-export const retrievalMimeTypesList = [
-  'text/x-c',
-  'text/x-c++',
-  'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
-  'text/html',
-  'text/x-java',
-  'application/json',
-  'text/markdown',
-  'application/pdf',
-  'text/x-php',
-  'application/vnd.openxmlformats-officedocument.presentationml.presentation',
-  'text/x-python',
-  'text/x-script.python',
-  'text/x-ruby',
-  'text/x-tex',
-  'text/plain',
-];
-
-export const imageExtRegex = /\.(jpg|jpeg|png|gif|webp)$/i;
-
-export const excelMimeTypes =
-  /^application\/(vnd\.ms-excel|msexcel|x-msexcel|x-ms-excel|x-excel|x-dos_ms_excel|xls|x-xls|vnd\.openxmlformats-officedocument\.spreadsheetml\.sheet)$/;
-
-export const textMimeTypes =
-  /^(text\/(x-c|x-csharp|x-c\+\+|x-java|html|markdown|x-php|x-python|x-script\.python|x-ruby|x-tex|plain|css|vtt|javascript|csv))$/;
-
-export const applicationMimeTypes =
-  /^(application\/(epub\+zip|csv|json|pdf|x-tar|typescript|vnd\.openxmlformats-officedocument\.(wordprocessingml\.document|presentationml\.presentation|spreadsheetml\.sheet)|xml|zip))$/;
-
-export const imageMimeTypes = /^image\/(jpeg|gif|png|webp)$/;
-
-export const supportedMimeTypes = [
-  textMimeTypes,
-  excelMimeTypes,
-  applicationMimeTypes,
-  imageMimeTypes,
-  /** Supported by LC Code Interpreter PAI */
-  /^image\/(svg|svg\+xml)$/,
-];
-
-export const codeInterpreterMimeTypes = [
-  textMimeTypes,
-  excelMimeTypes,
-  applicationMimeTypes,
-  imageMimeTypes,
-];
-
+// Define codeTypeMapping before use
 export const codeTypeMapping: { [key: string]: string } = {
   // Already included
   c: 'text/x-c',
@@ -157,9 +50,9 @@ export const codeTypeMapping: { [key: string]: string } = {
   
   // Additional programming languages
   java: 'text/x-java',
-  go: 'text/x-go',
-  rs: 'text/x-rust',
-  kt: 'text/x-kotlin',
+  go: 'text/plain',
+  rs: 'text/plain',
+  kt: 'text/plain',
   scala: 'text/x-scala',
   jsx: 'text/jsx',
   tsx: 'text/tsx',
@@ -177,7 +70,7 @@ export const codeTypeMapping: { [key: string]: string } = {
   clj: 'text/x-clojure',
   groovy: 'text/x-groovy',
   ps1: 'text/x-powershell',
-  bash: 'text/x-bash',
+  bash: 'text/plain',
   asm: 'text/x-asm',
   f: 'text/x-fortran',
   f90: 'text/x-fortran',
@@ -226,9 +119,184 @@ export const codeTypeMapping: { [key: string]: string } = {
   cxx: 'text/x-c++'
 };
 
+// Extract unique MIME types from codeTypeMapping using Object.keys/reduce instead of Set
+const codeTypeMimeTypes: string[] = Object.values(codeTypeMapping).reduce(
+  (unique: string[], mimeType: string) => {
+    return unique.includes(mimeType) ? unique : [...unique, mimeType];
+  },
+  []
+);
+
+// Additional MIME types derived from codeTypeMapping
+export const additionalLanguageMimeTypes = [
+  'text/swift',
+  'text/x-scala',
+  'text/jsx',
+  'text/tsx',
+  'text/x-sql',
+  'text/x-r',
+  'text/x-dart',
+  'text/x-perl',
+  'text/x-lua',
+  'text/x-haskell',
+  'text/x-matlab',
+  'text/x-julia',
+  'text/x-clojure',
+  'text/x-groovy',
+  'text/x-powershell',
+  'text/x-asm',
+  'text/x-fortran',
+  'text/x-cobol',
+  'text/x-erlang',
+  'text/x-elixir',
+  'text/x-rst',
+  'text/asciidoc',
+  'text/x-diff',
+  'text/x-patch',
+  'text/x-graphql',
+  'text/x-vue',
+  'application/x-ipynb+json',
+  'text/x-pug',
+  'text/x-sass',
+  'text/x-scss',
+  'text/x-less',
+  'text/x-protobuf',
+  'text/x-gradle',
+  'application/x-sh',
+  'application/x-yaml',
+];
+
+export const fullMimeTypesList = [
+  'text/x-c',
+  'text/x-csharp',
+  'text/x-c++',
+  'application/csv',
+  'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+  'text/html',
+  'text/x-java',
+  'application/json',
+  'text/markdown',
+  'application/pdf',
+  'text/x-php',
+  'application/vnd.openxmlformats-officedocument.presentationml.presentation',
+  'text/x-python',
+  'text/x-script.python',
+  'text/x-ruby',
+  'text/x-tex',
+  'text/plain',
+  'text/css',
+  'text/vtt',
+  'image/jpeg',
+  'text/javascript',
+  'image/gif',
+  'image/png',
+  'application/x-tar',
+  'application/typescript',
+  'application/xml',
+  'application/zip',
+  'image/svg',
+  'image/svg+xml',
+  ...excelFileTypes,
+  ...additionalLanguageMimeTypes,
+];
+
+export const codeInterpreterMimeTypesList = [
+  'text/x-c',
+  'text/x-csharp',
+  'text/x-c++',
+  'application/csv',
+  'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+  'text/html',
+  'text/x-java',
+  'application/json',
+  'text/markdown',
+  'application/pdf',
+  'text/x-php',
+  'application/vnd.openxmlformats-officedocument.presentationml.presentation',
+  'text/x-python',
+  'text/x-script.python',
+  'text/x-ruby',
+  'text/x-tex',
+  'text/plain',
+  'text/css',
+  'image/jpeg',
+  'text/javascript',
+  'image/gif',
+  'image/png',
+  'application/x-tar',
+  'application/typescript',
+  'application/xml',
+  'application/zip',
+  ...excelFileTypes,
+  ...additionalLanguageMimeTypes,
+];
+
+export const retrievalMimeTypesList = [
+  'text/x-c',
+  'text/x-csharp',
+  'text/x-c++',
+  'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+  'text/html',
+  'text/x-java',
+  'application/json',
+  'text/markdown',
+  'application/pdf',
+  'text/x-php',
+  'application/vnd.openxmlformats-officedocument.presentationml.presentation',
+  'text/x-python',
+  'text/x-script.python',
+  'text/x-ruby',
+  'text/x-tex',
+  'text/plain',
+  'text/swift',
+  'text/x-scala',
+  'text/jsx',
+  'text/tsx',
+  'text/x-sql',
+  'text/x-r',
+  'text/x-dart',
+];
+
+export const imageExtRegex = /\.(jpg|jpeg|png|gif|webp)$/i;
+
+export const excelMimeTypes =
+  /^application\/(vnd\.ms-excel|msexcel|x-msexcel|x-ms-excel|x-excel|x-dos_ms_excel|xls|x-xls|vnd\.openxmlformats-officedocument\.spreadsheetml\.sheet)$/;
+
+// Updated textMimeTypes regex to include new text-based MIME types
+export const textMimeTypes =
+  /^(text\/(x-c|x-csharp|x-c\+\+|x-java|html|markdown|x-php|x-python|x-script\.python|x-ruby|x-tex|plain|css|vtt|javascript|csv|swift|x-scala|jsx|tsx|x-sql|x-r|x-dart|x-perl|x-lua|x-haskell|x-matlab|x-julia|x-clojure|x-groovy|x-powershell|x-asm|x-fortran|x-cobol|x-erlang|x-elixir|asciidoc|x-rst|x-diff|x-patch|x-graphql|x-vue|x-pug|x-sass|x-scss|x-less|x-protobuf|x-gradle))$/;
+
+// Updated applicationMimeTypes to include new application types
+export const applicationMimeTypes =
+  /^(application\/(epub\+zip|csv|json|pdf|x-tar|typescript|vnd\.openxmlformats-officedocument\.(wordprocessingml\.document|presentationml\.presentation|spreadsheetml\.sheet)|xml|zip|x-sh|x-yaml|x-ipynb\+json))$/;
+
+export const imageMimeTypes = /^image\/(jpeg|gif|png|webp)$/;
+
+// Create a regex for the MIME types in codeTypeMapping
+const codeTypeMimeTypesRegex = new RegExp(
+  `^(${codeTypeMimeTypes.map(type => type.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|')})$`
+);
+
+export const supportedMimeTypes = [
+  textMimeTypes,
+  excelMimeTypes,
+  applicationMimeTypes,
+  imageMimeTypes,
+  /^image\/(svg|svg\+xml)$/,
+  codeTypeMimeTypesRegex,
+];
+
+export const codeInterpreterMimeTypes = [
+  textMimeTypes,
+  excelMimeTypes,
+  applicationMimeTypes,
+  imageMimeTypes,
+];
+
+// Updated retrievalMimeTypes patterns to include the new MIME types
 export const retrievalMimeTypes = [
-  /^(text\/(x-c|x-c\+\+|html|x-java|markdown|x-php|x-python|x-script\.python|x-ruby|x-tex|plain|vtt|xml))$/,
-  /^(application\/(json|pdf|vnd\.openxmlformats-officedocument\.(wordprocessingml\.document|presentationml\.presentation)))$/,
+  /^(text\/(x-c|x-csharp|x-c\+\+|html|x-java|markdown|x-php|x-python|x-script\.python|x-ruby|x-tex|plain|vtt|xml|swift|x-scala|jsx|tsx|x-sql|x-r|x-dart|x-perl|x-lua|x-haskell|x-matlab|x-julia|x-clojure|x-groovy|x-powershell|x-asm|x-fortran|x-cobol|x-erlang|x-elixir|asciidoc|x-rst|x-diff|x-patch|x-graphql|x-vue|x-pug|x-sass|x-scss|x-less|x-protobuf|x-gradle))$/,
+  /^(application\/(json|pdf|vnd\.openxmlformats-officedocument\.(wordprocessingml\.document|presentationml\.presentation)|x-sh|x-yaml|x-ipynb\+json))$/,
 ];
 
 export const megabyte = 1024 * 1024;

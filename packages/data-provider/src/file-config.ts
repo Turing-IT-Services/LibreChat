@@ -136,6 +136,7 @@ export const codeInterpreterMimeTypes = [
 ];
 
 export const codeTypeMapping: { [key: string]: string } = {
+  // Already included
   c: 'text/x-c',
   cs: 'text/x-csharp',
   cpp: 'text/x-c++',
@@ -152,6 +153,77 @@ export const codeTypeMapping: { [key: string]: string } = {
   yml: 'application/x-yaml',
   yaml: 'application/x-yaml',
   log: 'text/plain',
+  swift: 'text/swift',
+  
+  // Additional programming languages
+  java: 'text/x-java',
+  go: 'text/x-go',
+  rs: 'text/x-rust',
+  kt: 'text/x-kotlin',
+  scala: 'text/x-scala',
+  jsx: 'text/jsx',
+  tsx: 'text/tsx',
+  html: 'text/html',
+  htm: 'text/html',
+  css: 'text/css',
+  sql: 'text/x-sql',
+  r: 'text/x-r',
+  dart: 'text/x-dart',
+  pl: 'text/x-perl',
+  lua: 'text/x-lua',
+  hs: 'text/x-haskell',
+  m: 'text/x-matlab',
+  jl: 'text/x-julia',
+  clj: 'text/x-clojure',
+  groovy: 'text/x-groovy',
+  ps1: 'text/x-powershell',
+  bash: 'text/x-bash',
+  asm: 'text/x-asm',
+  f: 'text/x-fortran',
+  f90: 'text/x-fortran',
+  cob: 'text/x-cobol',
+  cbl: 'text/x-cobol',
+  erl: 'text/x-erlang',
+  ex: 'text/x-elixir',
+  exs: 'text/x-elixir',
+  
+  // Configuration/Data files
+  json: 'application/json',
+  xml: 'application/xml',
+  csv: 'text/csv',
+  ini: 'text/plain',
+  toml: 'text/plain',
+  properties: 'text/plain',
+  dockerfile: 'text/plain',
+  gitignore: 'text/plain',
+  env: 'text/plain',
+  
+  // Documentation
+  rst: 'text/x-rst',
+  adoc: 'text/asciidoc',
+  
+  // Additional common formats
+  txt: 'text/plain',
+  diff: 'text/x-diff',
+  patch: 'text/x-patch',
+  svg: 'image/svg+xml',
+  graphql: 'text/x-graphql',
+  vue: 'text/x-vue',
+  ipynb: 'application/x-ipynb+json',
+  bat: 'text/plain',
+  conf: 'text/plain',
+  pug: 'text/x-pug',
+  sass: 'text/x-sass',
+  scss: 'text/x-scss',
+  less: 'text/x-less',
+  proto: 'text/x-protobuf',
+  gradle: 'text/x-gradle',
+  pom: 'application/xml',
+  h: 'text/x-c',
+  hpp: 'text/x-c++',
+  hxx: 'text/x-c++',
+  cc: 'text/x-c++',
+  cxx: 'text/x-c++'
 };
 
 export const retrievalMimeTypes = [
